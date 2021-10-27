@@ -9,16 +9,9 @@ export default class TitleScene extends Phaser.Scene {
   }
 
   create(): void {
-    const startButton = new TextButton(
-      this,
-      100,
-      100,
-      '始める',
-      {},
-      () => {
-        this.scene.start('BattleScene');
-      },
-    );
+    const startButton = new TextButton(this, 100, 100, '始める', {}, () => {
+      this.scene.start('GameScene');
+    });
     this.add.existing(startButton);
   }
 }
