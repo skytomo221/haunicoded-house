@@ -1,5 +1,5 @@
 import 'phaser';
-import BattleScene from './scenes/battle-scene';
+import GameScene from './scenes/game-scene';
 import TitleScene from './scenes/title-scene';
 
 const config: Phaser.Types.Core.GameConfig = {
@@ -9,7 +9,7 @@ const config: Phaser.Types.Core.GameConfig = {
   height: 480,
   parent: 'game',
   type: Phaser.AUTO,
-  scene: [TitleScene, BattleScene],
+  scene: [TitleScene, GameScene],
 };
 
 export default class Game extends Phaser.Game {
