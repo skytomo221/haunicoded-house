@@ -1,4 +1,5 @@
 import 'phaser';
+import TextButton from '../objects/button';
 
 export default class TitleScene extends Phaser.Scene {
   constructor() {
@@ -7,7 +8,17 @@ export default class TitleScene extends Phaser.Scene {
     });
   }
 
-  preload(): void {
-    const text = this.add.text(0, 0, 'Hello Phaser');
+  create(): void {
+    const startButton = new TextButton(
+      this,
+      100,
+      100,
+      '始める',
+      {},
+      () => {
+        this.scene.start('BattleScene');
+      },
+    );
+    this.add.existing(startButton);
   }
 }
