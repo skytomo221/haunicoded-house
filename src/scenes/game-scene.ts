@@ -51,13 +51,15 @@ export default class GameScene extends Phaser.Scene {
         const diff = Math.abs(this.inputCodePoint - answer) * 1000;
         if (diff) {
           this.timer.reset({
-            delay: Math.max(this.timer.delay - diff, 1000),
+            delay: Math.max(this.timer.delay - diff, 0),
             callback: this.gameover,
+            callbackScope: this,
           });
         } else {
           this.timer.reset({
-            delay: this.timer.delay + 16,
+            delay: this.timer.delay + 16 * 1000,
             callback: this.gameover,
+            callbackScope: this,
           });
         }
         this.inputCodePoint = 0;
