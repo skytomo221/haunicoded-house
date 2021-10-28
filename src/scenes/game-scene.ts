@@ -28,9 +28,7 @@ export default class GameScene extends Phaser.Scene {
   inputCodePointText!: Phaser.GameObjects.Text;
 
   constructor() {
-    super({
-      key: 'GameScene',
-    });
+    super({ key: 'GameScene' });
   }
 
   init(data: { timelimit: number }) {
@@ -45,8 +43,14 @@ export default class GameScene extends Phaser.Scene {
     this.setBackground();
     this.timer = this.time.delayedCall(this.timelimit, this.gameover);
     this.clock = this.add.text(0, 0, '');
-    this.inputCodePointText = this.add.text(0, 30, '');
-    this.quiz = this.add.text(0, 50, getRandomChar());
+    this.inputCodePointText = this.add.text(100, 240, '', {
+      fontFamily: '"Noto Sans JP"',
+      fontSize: '64px',
+    });
+    this.quiz = this.add.text(100, 100, getRandomChar(), {
+      fontFamily: '"Noto Sans JP"',
+      fontSize: '128px',
+    });
     this.input.keyboard.on('keydown', this.keydown);
   }
 
@@ -111,6 +115,7 @@ export default class GameScene extends Phaser.Scene {
           });
         }
         this.inputCodePoint = 0;
+        this.quiz.setText(getRandomChar());
         break;
       }
       default:
