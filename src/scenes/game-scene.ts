@@ -33,7 +33,24 @@ export default class GameScene extends Phaser.Scene {
     });
   }
 
+  preload() {
+    this.load.image('background', '../../asset/images/background.jpg');
+  }
+
+  private setBackground() {
+    const background = this.add.image(
+      this.cameras.main.width / 2,
+      this.cameras.main.height / 2,
+      'background',
+    );
+    const scaleX = this.cameras.main.width / background.width;
+    const scaleY = this.cameras.main.height / background.height;
+    const scale = Math.max(scaleX, scaleY);
+    background.setScale(scale).setScrollFactor(0);
+  }
+
   create(): void {
+    this.setBackground();
     this.timer = this.time.delayedCall(16 ** 4 * 1000, this.gameover, [], this);
     this.clock = this.add.text(0, 0, '');
     this.inputCodePointText = this.add.text(0, 30, '');
