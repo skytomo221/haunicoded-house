@@ -17,7 +17,7 @@ function getRandomChar() {
 export default class GameScene extends Phaser.Scene {
   timer!: Phaser.Time.TimerEvent;
 
-  countdown = 16 ** 4 * 1000;
+  timelimit!: number;
 
   clock!: Phaser.GameObjects.Text;
 
@@ -33,13 +33,17 @@ export default class GameScene extends Phaser.Scene {
     });
   }
 
+  init(data: { timelimit: number }) {
+    this.timelimit = data.timelimit;
+  }
+
   preload() {
     this.load.image('background', '../../asset/images/background.jpg');
   }
 
   create(): void {
     this.setBackground();
-    this.timer = this.time.delayedCall(16 ** 4 * 1000, this.gameover);
+    this.timer = this.time.delayedCall(this.timelimit, this.gameover);
     this.clock = this.add.text(0, 0, '');
     this.inputCodePointText = this.add.text(0, 30, '');
     this.quiz = this.add.text(0, 50, getRandomChar());
@@ -111,9 +115,9 @@ export default class GameScene extends Phaser.Scene {
       }
       default:
     }
-  }
+  };
 
   gameover = () => {
     this.add.text(0, 10, 'Game Over');
-  }
+  };
 }
