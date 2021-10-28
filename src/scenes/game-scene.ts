@@ -39,7 +39,7 @@ export default class GameScene extends Phaser.Scene {
 
   create(): void {
     this.setBackground();
-    this.timer = this.time.delayedCall(16 ** 4 * 1000, this.gameover, [], this);
+    this.timer = this.time.delayedCall(16 ** 4 * 1000, this.gameover);
     this.clock = this.add.text(0, 0, '');
     this.inputCodePointText = this.add.text(0, 30, '');
     this.quiz = this.add.text(0, 50, getRandomChar());
@@ -48,7 +48,6 @@ export default class GameScene extends Phaser.Scene {
 
   update() {
     const remaining = this.timer.getRemaining() / 1000;
-
     this.clock.setText(`残り時間 ${Math.ceil(remaining)}`);
     this.inputCodePointText.setText(
       `${this.inputCodePoint.toString(16).toUpperCase()}`,
@@ -67,7 +66,7 @@ export default class GameScene extends Phaser.Scene {
     background.setScale(scale).setScrollFactor(0);
   }
 
-  private keydown(event: KeyboardEvent) {
+  private keydown = (event: KeyboardEvent) => {
     switch (event.key) {
       case '0':
       case '1':
@@ -100,13 +99,11 @@ export default class GameScene extends Phaser.Scene {
           this.timer.reset({
             delay: Math.max(this.timer.delay - diff, 0),
             callback: this.gameover,
-            callbackScope: this,
           });
         } else {
           this.timer.reset({
             delay: this.timer.delay + 16 * 1000,
             callback: this.gameover,
-            callbackScope: this,
           });
         }
         this.inputCodePoint = 0;
@@ -116,7 +113,7 @@ export default class GameScene extends Phaser.Scene {
     }
   }
 
-  gameover() {
+  gameover = () => {
     this.add.text(0, 10, 'Game Over');
   }
 }
