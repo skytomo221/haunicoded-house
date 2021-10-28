@@ -43,33 +43,7 @@ export default class GameScene extends Phaser.Scene {
     this.clock = this.add.text(0, 0, '');
     this.inputCodePointText = this.add.text(0, 30, '');
     this.quiz = this.add.text(0, 50, getRandomChar());
-    this.input.keyboard.on('keydown', (event: KeyboardEvent) => {
-      if (/^[0-9a-f]$/i.test(event.key)) {
-        this.inputCodePoint *= 0x10;
-        this.inputCodePoint += parseInt(event.key, 16);
-      } else if (event.key === 'Backspace') {
-        this.inputCodePoint /= 0x10;
-        this.inputCodePoint = Math.floor(this.inputCodePoint);
-      } else if (event.key === 'Enter') {
-        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-        const answer = this.quiz.text.codePointAt(0)!;
-        const diff = Math.abs(this.inputCodePoint - answer) * 1000;
-        if (diff) {
-          this.timer.reset({
-            delay: Math.max(this.timer.delay - diff, 0),
-            callback: this.gameover,
-            callbackScope: this,
-          });
-        } else {
-          this.timer.reset({
-            delay: this.timer.delay + 16 * 1000,
-            callback: this.gameover,
-            callbackScope: this,
-          });
-        }
-        this.inputCodePoint = 0;
-      }
-    });
+    this.input.keyboard.on('keydown', this.keydown);
   }
 
   update() {
@@ -91,6 +65,34 @@ export default class GameScene extends Phaser.Scene {
     const scaleY = this.cameras.main.height / background.height;
     const scale = Math.max(scaleX, scaleY);
     background.setScale(scale).setScrollFactor(0);
+  }
+
+  private keydown(event: KeyboardEvent) {
+    if (/^[0-9a-f]$/i.test(event.key)) {
+      this.inputCodePoint *= 0x10;
+      this.inputCodePoint += parseInt(event.key, 16);
+    } else if (event.key === 'Backspace') {
+      this.inputCodePoint /= 0x10;
+      this.inputCodePoint = Math.floor(this.inputCodePoint);
+    } else if (event.key === 'Enter') {
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+      const answer = this.quiz.text.codePointAt(0)!;
+      const diff = Math.abs(this.inputCodePoint - answer) * 1000;
+      if (diff) {
+        this.timer.reset({
+          delay: Math.max(this.timer.delay - diff, 0),
+          callback: this.gameover,
+          callbackScope: this,
+        });
+      } else {
+        this.timer.reset({
+          delay: this.timer.delay + 16 * 1000,
+          callback: this.gameover,
+          callbackScope: this,
+        });
+      }
+      this.inputCodePoint = 0;
+    }
   }
 
   gameover() {
