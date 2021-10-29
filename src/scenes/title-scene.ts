@@ -54,5 +54,12 @@ export default class TitleScene extends Phaser.Scene {
         this.cameras.main.height / 5,
       )
       .setScrollFactor(0);
+    this.add.pointlight(
+      title.getTopLeft().x + title.displayWidth * 0.41,
+      title.getTopLeft().y + title.displayHeight * 0.1,
+      0xee6666,
+      100,
+      0.1,
+    );
   }
 }
