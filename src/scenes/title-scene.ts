@@ -15,23 +15,28 @@ export default class TitleScene extends Phaser.Scene {
   create(): void {
     this.setTitle();
     this.add.existing(
-      new TextButton(this, 100, 200, 'EASY', {}, () => {
+      new TextButton(this, 100, 200, 'VERY EASY', {}, () => {
+        this.scene.start('GameScene', { timelimit: 4 ** 7 * 1000 });
+      }),
+    );
+    this.add.existing(
+      new TextButton(this, 100, 220, 'EASY', {}, () => {
+        this.scene.start('GameScene', { timelimit: 4 ** 6 * 1000 });
+      }),
+    );
+    this.add.existing(
+      new TextButton(this, 100, 240, 'NORMAL', {}, () => {
         this.scene.start('GameScene', { timelimit: 4 ** 5 * 1000 });
       }),
     );
     this.add.existing(
-      new TextButton(this, 100, 220, 'NORMAL', {}, () => {
+      new TextButton(this, 100, 260, 'HARD', {}, () => {
         this.scene.start('GameScene', { timelimit: 4 ** 4 * 1000 });
       }),
     );
     this.add.existing(
-      new TextButton(this, 100, 240, 'HARD', {}, () => {
+      new TextButton(this, 100, 280, 'VERY HARD', {}, () => {
         this.scene.start('GameScene', { timelimit: 4 ** 3 * 1000 });
-      }),
-    );
-    this.add.existing(
-      new TextButton(this, 100, 260, 'VERY HARD', {}, () => {
-        this.scene.start('GameScene', { timelimit: 4 ** 2 * 1000 });
       }),
     );
   }
