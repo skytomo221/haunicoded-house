@@ -19,13 +19,19 @@ export default class GameScene extends Phaser.Scene {
 
   timelimit!: number;
 
-  clock!: Phaser.GameObjects.Text;
+  stateText!: Phaser.GameObjects.Text;
 
   inputCodePoint = 0;
 
   quiz!: Phaser.GameObjects.Text;
 
   inputCodePointText!: Phaser.GameObjects.Text;
+
+  answered = 0;
+
+  score = 0;
+
+  perfect = 0;
 
   constructor() {
     super({ key: 'GameScene' });
@@ -42,7 +48,7 @@ export default class GameScene extends Phaser.Scene {
   create(): void {
     this.setBackground();
     this.timer = this.time.delayedCall(this.timelimit, this.gameover);
-    this.clock = this.add.text(0, 0, '');
+    this.stateText = this.add.text(0, 0, '');
     this.inputCodePointText = this.add.text(100, 240, '', {
       fontFamily: '"Noto Sans JP"',
       fontSize: '64px',
@@ -56,7 +62,10 @@ export default class GameScene extends Phaser.Scene {
 
   update() {
     const remaining = this.timer.getRemaining() / 1000;
-    this.clock.setText(`残り時間 ${Math.ceil(remaining)}`);
+    this.stateText.setText(`TIME: ${Math.ceil(remaining)}
+ANSWERED: ${this.answered}
+PERFECT: ${this.perfect}
+SCORE: ${this.score + this.perfect * 256}`);
     this.inputCodePointText.setText(
       `${this.inputCodePoint.toString(16).toUpperCase()}`,
     );
@@ -102,10 +111,10 @@ export default class GameScene extends Phaser.Scene {
       case 'Enter': {
         // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
         const answer = this.quiz.text.codePointAt(0)!;
-        const diff = Math.abs(this.inputCodePoint - answer) * 1000;
+        const diff = Math.abs(this.inputCodePoint - answer);
         if (diff) {
           this.timer.reset({
-            delay: Math.max(this.timer.delay - diff, 0),
+            delay: Math.max(this.timer.delay - diff * 1000, 0),
             callback: this.gameover,
           });
         } else {
@@ -113,7 +122,10 @@ export default class GameScene extends Phaser.Scene {
             delay: this.timer.delay + 16 * 1000,
             callback: this.gameover,
           });
+          this.perfect += 1;
         }
+        this.answered += 1;
+        this.score += 256 - diff;
         this.inputCodePoint = 0;
         this.quiz.setText(getRandomChar());
         break;
