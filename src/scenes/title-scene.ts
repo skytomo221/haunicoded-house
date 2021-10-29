@@ -14,28 +14,32 @@ export default class TitleScene extends Phaser.Scene {
 
   create(): void {
     this.setTitle();
+    const fontStyle = {
+      fontFamily: '"Fontdiner Swanky"',
+      fontSize: '32px',
+    };
     this.add.existing(
-      new TextButton(this, 100, 200, 'VERY EASY', {}, () => {
+      new TextButton(this, 100, 200, 'Very Easy', fontStyle, () => {
         this.scene.start('GameScene', { timelimit: 4 ** 7 * 1000 });
       }),
     );
     this.add.existing(
-      new TextButton(this, 100, 220, 'EASY', {}, () => {
+      new TextButton(this, 100, 240, 'Easy', fontStyle, () => {
         this.scene.start('GameScene', { timelimit: 4 ** 6 * 1000 });
       }),
     );
     this.add.existing(
-      new TextButton(this, 100, 240, 'NORMAL', {}, () => {
+      new TextButton(this, 100, 280, 'Normal', fontStyle, () => {
         this.scene.start('GameScene', { timelimit: 4 ** 5 * 1000 });
       }),
     );
     this.add.existing(
-      new TextButton(this, 100, 260, 'HARD', {}, () => {
+      new TextButton(this, 100, 320, 'Hard', fontStyle, () => {
         this.scene.start('GameScene', { timelimit: 4 ** 4 * 1000 });
       }),
     );
     this.add.existing(
-      new TextButton(this, 100, 280, 'VERY HARD', {}, () => {
+      new TextButton(this, 100, 360, 'Very Hard', fontStyle, () => {
         this.scene.start('GameScene', { timelimit: 4 ** 3 * 1000 });
       }),
     );
@@ -43,7 +47,6 @@ export default class TitleScene extends Phaser.Scene {
 
   private setTitle() {
     const title = this.add.image(0, 0, 'title');
-
     const scaleX = this.cameras.main.width / title.width / 4;
     const scaleY = this.cameras.main.height / title.height / 4;
     const scale = Math.max(scaleX, scaleY);

@@ -48,26 +48,39 @@ export default class GameScene extends Phaser.Scene {
   create(): void {
     this.setBackground();
     this.timer = this.time.delayedCall(this.timelimit, this.gameover);
-    this.stateText = this.add.text(0, 0, '');
-    this.inputCodePointText = this.add.text(100, 240, '', {
-      fontFamily: '"Noto Sans JP"',
-      fontSize: '64px',
+    this.stateText = this.add.text(0, 0, '', {
+      fontFamily: '"Miltonian Tattoo"',
+      fontSize: '24px',
     });
-    this.quiz = this.add.text(100, 100, getRandomChar(), {
-      fontFamily: '"Noto Sans JP"',
-      fontSize: '128px',
-    });
+    this.inputCodePointText = this.add.text(
+      this.cameras.main.width * 0.3,
+      this.cameras.main.height * 0.5,
+      '',
+      {
+        fontFamily: '"Miltonian Tattoo"',
+        fontSize: '64px',
+      },
+    );
+    this.quiz = this.add.text(
+      this.cameras.main.width * 0.45,
+      this.cameras.main.height * 0.15,
+      getRandomChar(),
+      {
+        fontFamily: '"Noto Sans JP"',
+        fontSize: '128px',
+      },
+    );
     this.input.keyboard.on('keydown', this.keydown);
   }
 
   update() {
     const remaining = this.timer.getRemaining() / 1000;
-    this.stateText.setText(`TIME: ${Math.ceil(remaining)}
-ANSWERED: ${this.answered}
-PERFECT: ${this.perfect}
-SCORE: ${this.score + this.perfect * 256}`);
+    this.stateText.setText(`Time: ${Math.ceil(remaining)}
+Answered: ${this.answered}
+Perfect: ${this.perfect}
+Score: ${this.score + this.perfect * 256}`);
     this.inputCodePointText.setText(
-      `${this.inputCodePoint.toString(16).toUpperCase()}`,
+      `U+${this.inputCodePoint.toString(16).toUpperCase()}`,
     );
   }
 
