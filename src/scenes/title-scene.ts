@@ -50,7 +50,7 @@ export default class TitleScene extends Phaser.Scene {
     title
       .setScale(scale)
       .setPosition(
-        this.cameras.main.width / 2 - title.getCenter().x / 2,
+        this.cameras.main.width / 2,
         this.cameras.main.height / 5,
       )
       .setScrollFactor(0);
