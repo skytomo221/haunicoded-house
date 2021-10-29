@@ -49,10 +49,7 @@ export default class TitleScene extends Phaser.Scene {
     const scale = Math.max(scaleX, scaleY);
     title
       .setScale(scale)
-      .setPosition(
-        this.cameras.main.width / 2,
-        this.cameras.main.height / 5,
-      )
+      .setPosition(this.cameras.main.width / 2, this.cameras.main.height / 5)
       .setScrollFactor(0);
     this.add.pointlight(
       title.getTopLeft().x + title.displayWidth * 0.41,
