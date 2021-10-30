@@ -28,12 +28,7 @@ export default class GameScene extends Phaser.Scene {
     this.timelimit = data.timelimit;
   }
 
-  preload() {
-    this.load.image('background', '../../asset/images/background.jpg');
-  }
-
   create(): void {
-    this.setBackground();
     this.timer = this.time.delayedCall(this.timelimit, this.gameover);
     this.stateText = this.add.text(0, 0, '', {
       fontFamily: '"Miltonian Tattoo"',
@@ -69,18 +64,6 @@ Score: ${this.score + this.perfect * 256}`);
     this.inputCodePointText.setText(
       `U+${this.inputCodePoint.toString(16).toUpperCase()}`,
     );
-  }
-
-  private setBackground() {
-    const background = this.add.image(
-      this.cameras.main.width / 2,
-      this.cameras.main.height / 2,
-      'background',
-    );
-    const scaleX = this.cameras.main.width / background.width;
-    const scaleY = this.cameras.main.height / background.height;
-    const scale = Math.max(scaleX, scaleY);
-    background.setScale(scale).setScrollFactor(0);
   }
 
   private keydown = (event: KeyboardEvent) => {
