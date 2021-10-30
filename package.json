@@ -9,7 +9,7 @@
     "start:dev": "webpack-dev-server --mode=development",
     "fix": "run-s fix:prettier fix:eslint",
     "fix:eslint": "eslint --fix ./src",
-    "fix:prettier": "npx prettier --write .",
+    "fix:prettier": "npx prettier --write . --ignore-path ./.prettierignore",
     "build:dev": "webpack --mode=development",
     "build:prod": "webpack --mode=production --node-env=production",
     "dist": "run-script-os",
