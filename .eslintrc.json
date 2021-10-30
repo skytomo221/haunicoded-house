@@ -5,6 +5,7 @@
     "es6": true
   },
   "extends": ["airbnb-base", "plugin:@typescript-eslint/recommended"],
+  "ignorePatterns": ["webpack.config.js"],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "project": "./tsconfig.json"
