@@ -19,29 +19,64 @@ export default class TitleScene extends Phaser.Scene {
       fontSize: '32px',
     };
     this.add.existing(
-      new TextButton(this, 100, 200, 'Very Easy', fontStyle, () => {
-        this.scene.start('GameScene', { timelimit: 4 ** 7 * 1000 });
-      }),
+      new TextButton(
+        this,
+        this.cameras.main.width * 0.4,
+        this.cameras.main.height * 0.4,
+        'Very Easy',
+        fontStyle,
+        () => {
+          this.scene.start('GameScene', { timelimit: 4 ** 7 * 1000 });
+        },
+      ),
     );
     this.add.existing(
-      new TextButton(this, 100, 240, 'Easy', fontStyle, () => {
-        this.scene.start('GameScene', { timelimit: 4 ** 6 * 1000 });
-      }),
+      new TextButton(
+        this,
+        this.cameras.main.width * 0.4,
+        this.cameras.main.height * 0.5,
+        'Easy',
+        fontStyle,
+        () => {
+          this.scene.start('GameScene', { timelimit: 4 ** 6 * 1000 });
+        },
+      ),
     );
     this.add.existing(
-      new TextButton(this, 100, 280, 'Normal', fontStyle, () => {
-        this.scene.start('GameScene', { timelimit: 4 ** 5 * 1000 });
-      }),
+      new TextButton(
+        this,
+        this.cameras.main.width * 0.4,
+        this.cameras.main.height * 0.6,
+        'Normal',
+        fontStyle,
+        () => {
+          this.scene.start('GameScene', { timelimit: 4 ** 5 * 1000 });
+        },
+      ),
     );
     this.add.existing(
-      new TextButton(this, 100, 320, 'Hard', fontStyle, () => {
-        this.scene.start('GameScene', { timelimit: 4 ** 4 * 1000 });
-      }),
+      new TextButton(
+        this,
+        this.cameras.main.width * 0.4,
+        this.cameras.main.height * 0.7,
+        'Hard',
+        fontStyle,
+        () => {
+          this.scene.start('GameScene', { timelimit: 4 ** 4 * 1000 });
+        },
+      ),
     );
     this.add.existing(
-      new TextButton(this, 100, 360, 'Very Hard', fontStyle, () => {
-        this.scene.start('GameScene', { timelimit: 4 ** 3 * 1000 });
-      }),
+      new TextButton(
+        this,
+        this.cameras.main.width * 0.4,
+        this.cameras.main.height * 0.8,
+        'Very Hard',
+        fontStyle,
+        () => {
+          this.scene.start('GameScene', { timelimit: 4 ** 3 * 1000 });
+        },
+      ),
     );
   }
 
