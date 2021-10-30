@@ -9,7 +9,7 @@ export default class TitleScene extends Phaser.Scene {
   }
 
   preload() {
-    this.load.svg('title', '../../asset/images/title.svg');
+    this.load.svg('title', 'asset/images/title.svg');
   }
 
   create(): void {

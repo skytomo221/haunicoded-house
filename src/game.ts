@@ -10,6 +10,9 @@ const config: Phaser.Types.Core.GameConfig = {
   parent: 'game',
   type: Phaser.AUTO,
   scene: [TitleScene, GameScene],
+  loader: {
+    baseURL: 'https://skytomo221.github.io/haunicoded-house/',
+  },
 };
 
 export default class Game extends Phaser.Game {
