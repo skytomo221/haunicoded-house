@@ -67057,7 +67057,7 @@
             super({ key: "TitleScene" });
           }
           preload() {
-            this.load.svg("title", "../asset/images/title.svg");
+            this.load.svg("title", "asset/images/title.svg");
           }
           create() {
             this.setTitle();
@@ -67142,7 +67142,6 @@
         parent: "game",
         type: Phaser.AUTO,
         scene: [e.default, t.default],
-        loader: { path: "../" },
       };
     class s extends Phaser.Game {
       constructor(t) {
