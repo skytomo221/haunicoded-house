@@ -1,33 +1,12 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="UTF-8" />
-    <title>Haunicoded House</title>
-  </head>
-
-  <style>
-    @import url("https://fonts.googleapis.com/css2?family=Fontdiner+Swanky&display=swap");
+<!doctype html><html><head><meta charset="UTF-8"/><title>Haunicoded House</title><script defer="defer" src="bundle.js"></script></head><style>@import url("https://fonts.googleapis.com/css2?family=Fontdiner+Swanky&display=swap");
     @import url("https://fonts.googleapis.com/css2?family=Miltonian+Tattoo&display=swap");
-    @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap");
-  </style>
-
-  <style>
-    body {
+    @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap");</style><style>body {
       margin: 0;
       overflow: hidden;
     }
     div {
       overflow: hidden;
-    }
-  </style>
-
-  <body>
-    <div class="container">
-      <div id="game"></div>
-    </div>
-  </body>
-  <script>
-    if ("serviceWorker" in navigator) {
+    }</style><body><div class="container"><div id="game"></div></div></body><script>if ("serviceWorker" in navigator) {
       window.addEventListener("load", () => {
         navigator.serviceWorker
           .register("dist/bundle.js")
@@ -41,6 +20,4 @@
             );
           });
       });
-    }
-  </script>
-</html>
+    }</script></html>
