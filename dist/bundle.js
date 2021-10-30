@@ -67142,6 +67142,7 @@
         parent: "game",
         type: Phaser.AUTO,
         scene: [e.default, t.default],
+        loader: { baseURL: "https://skytomo221.github.io/haunicoded-house/" },
       };
     class s extends Phaser.Game {
       constructor(t) {
