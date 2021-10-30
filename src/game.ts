@@ -5,8 +5,8 @@ import TitleScene from './scenes/title-scene';
 const config: Phaser.Types.Core.GameConfig = {
   title: 'botMonster',
   version: '0.0.1',
-  width: 640,
-  height: 480,
+  width: window.innerWidth,
+  height: window.innerHeight,
   parent: 'game',
   type: Phaser.AUTO,
   scene: [TitleScene, GameScene],
