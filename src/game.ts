@@ -23,5 +23,6 @@ export default class Game extends Phaser.Game {
 }
 
 window.addEventListener('load', () => {
-  const game = new Game(config);
+  // eslint-disable-next-line no-new
+  new Game(config);
 });
